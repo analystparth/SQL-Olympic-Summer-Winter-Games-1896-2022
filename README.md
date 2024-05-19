@@ -1,6 +1,6 @@
 # Olympic Summer Winter Games (1896-2022)
 
-**2.** **which team has won the maximum gold medals over the years.**
+**1.** **which team has won the maximum gold medals over the years.**
 ```
 select top 1 a.team, COUNT(medal) medal_cnt
 from athletes a left join athlete_events ae
@@ -9,7 +9,7 @@ where medal = 'Gold'
 group by a.team
 order by medal_cnt desc
 ```
-**2** **for each team print total silver medals and year in which they won maximum silver medal..output 3 columns
+**2.** **for each team print total silver medals and year in which they won maximum silver medal..output 3 columns
 -- team,total_silver_medals, year_of_max_silver**
 ```
 with cte as(
@@ -34,7 +34,7 @@ where rnk=1)
 
 select cte.team, cte.total_silver_medals, cte3.year from cte join cte3 on cte.team = cte3.team ;
 ```
-**3** **which player has won maximum gold medals  amongst the players**
+**3.** **which player has won maximum gold medals  amongst the players**
 **which have won only gold medal (never won silver or bronze) over the years**
 ```
 with cte as(
@@ -48,7 +48,7 @@ and medal ='Gold'
 group by name 
 order by cnt desc;
 ```
-**4** **in each year which player has won maximum gold medal . Write a query to print year,player name 
+**4.** **in each year which player has won maximum gold medal . Write a query to print year,player name 
 --and no of golds won in that year . In case of a tie print comma separated player names.**
 ```
 WITH CTE AS(
@@ -63,7 +63,7 @@ select year, STRING_AGG(name,' , ') name,cnt from
 where rnk =1
 group by year, cnt;
 ```
-**5** **in which event and year India has won its first gold medal,first silver medal and first bronze medal
+**5.** **in which event and year India has won its first gold medal,first silver medal and first bronze medal
 --print 3 columns medal,year,sport**
 ```
 with cte as(
@@ -90,7 +90,7 @@ group by a.name having count(distinct season)=2;
 
 ```
 
-**7** **find players who won gold, silver and bronze medal in a single olympics. print player name along with year.**
+**7.** **find players who won gold, silver and bronze medal in a single olympics. print player name along with year.**
 ```
 select name,year 
 from athlete_events ae
@@ -99,7 +99,7 @@ where medal != 'NA'
 group by name,year 
 having  count(distinct medal)=3 and count(distinct year) =1
 ```
-**8** **find players who have won gold medals in consecutive 3 summer olympics in the same event . Consider only olympics 2000 onwards. 
+**8.** **find players who have won gold medals in consecutive 3 summer olympics in the same event . Consider only olympics 2000 onwards. 
 --Assume summer olympics happens every 4 year starting 2000. print player name and event name.**
 ```
 with cte as(
